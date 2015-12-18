@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DaggerRealm</string>
+
+    <string name="text_before">BEFORE</string>
+    <string name="text_after">AFTER</string>
+
+    <string name="btn_example">click me</string>
 </resources>
