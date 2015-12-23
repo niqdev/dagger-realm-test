@@ -2,6 +2,8 @@ package com.github.niqdev.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.niqdev.R;
@@ -20,10 +22,13 @@ public class MainActivity extends AppCompatActivity {
     @BindString(R.string.text_after)
     String textAfter;
 
-    @Bind(R.id.myTextView)
-    TextView myTextView;
+    @Bind(R.id.textViewExample1)
+    TextView textViewExample1;
 
-    @Inject
+    @Bind(R.id.editTextExample2)
+    EditText editTextExample2;
+
+    //@Inject
     PreferenceService preferenceService;
 
     @Override
@@ -33,13 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
         Injector.getApplicationComponent().inject(this);
         ButterKnife.bind(this);
+
+        //initPreference();
     }
 
-    @OnClick(R.id.myButton)
+    @OnClick(R.id.buttonExample1)
     void onClickChangeText() {
-        myTextView.setText(textAfter);
+        textViewExample1.setText(textAfter);
     }
 
-    // TODO read/write preference
+    private void initPreference() {
+        editTextExample2.setText(preferenceService.readMyPreference());
+    }
+
+    @OnClick(R.id.buttonExample2)
+    void onClickEditPreference() {
+        String value = editTextExample2.getText().toString();
+        if (!TextUtils.isEmpty(value)) {
+            preferenceService.saveMyPreference(value);
+        }
+    }
 
 }

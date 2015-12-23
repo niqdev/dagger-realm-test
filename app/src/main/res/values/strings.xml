@@ -3,6 +3,8 @@
 
     <string name="text_before">BEFORE</string>
     <string name="text_after">AFTER</string>
+    <string name="text_preference">Preference</string>
 
-    <string name="btn_example">click me</string>
+    <string name="btn_example1">change</string>
+    <string name="btn_example2">edit preference</string>
 </resources>

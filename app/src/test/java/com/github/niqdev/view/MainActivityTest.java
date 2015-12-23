@@ -23,8 +23,8 @@ public class MainActivityTest {
     public void onClick_shouldChangeText() {
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
 
-        Button myButton = (Button) activity.findViewById(R.id.myButton);
-        TextView myTextView = (TextView) activity.findViewById(R.id.myTextView);
+        Button myButton = (Button) activity.findViewById(R.id.buttonExample1);
+        TextView myTextView = (TextView) activity.findViewById(R.id.textViewExample1);
 
         assertThat(myTextView.getText().toString(), equalTo("BEFORE"));
         myButton.performClick();

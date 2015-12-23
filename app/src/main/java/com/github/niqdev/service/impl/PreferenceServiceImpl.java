@@ -4,10 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.github.niqdev.component.Injector;
 import com.github.niqdev.service.PreferenceService;
-
-import javax.inject.Inject;
 
 public class PreferenceServiceImpl implements PreferenceService {
 
@@ -15,9 +12,7 @@ public class PreferenceServiceImpl implements PreferenceService {
 
     private final SharedPreferences sharedPreferences;
 
-    @Inject
     public PreferenceServiceImpl(Application application) {
-        Injector.getApplicationComponent().inject(this);
         this.sharedPreferences = application.getSharedPreferences(PREFERENCE_MAIN, Context.MODE_PRIVATE);
     }
 
@@ -28,7 +23,7 @@ public class PreferenceServiceImpl implements PreferenceService {
     }
 
     @Override
-    public void saveMyPreference() {
+    public void saveMyPreference(String value) {
         // TODO
     }
 }
