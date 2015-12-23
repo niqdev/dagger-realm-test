@@ -1,6 +1,7 @@
 package com.github.niqdev.component;
 
 import com.github.niqdev.component.module.ApplicationContextModule;
+import com.github.niqdev.service.impl.PreferenceServiceImpl;
 import com.github.niqdev.view.MainActivity;
 
 import javax.inject.Singleton;
@@ -12,5 +13,6 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(MainActivity mainActivity);
+    void inject(PreferenceServiceImpl preferenceService);
 
 }
