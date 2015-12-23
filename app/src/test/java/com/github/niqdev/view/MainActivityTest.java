@@ -1,7 +1,10 @@
-package com.github.niqdev;
+package com.github.niqdev.view;
 
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.github.niqdev.BuildConfig;
+import com.github.niqdev.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -9,3 +9,7 @@ Setup [Robolectric](http://robolectric.org/getting-started/)
 for Linux and Mac users:
 
 - Edit Configurations > Working directory = $MODULE_DIR$
+
+Links
+
+- [setup dagger](http://stackoverflow.com/questions/27036933/how-to-set-up-dagger-dependency-injection-from-scratch-in-android-project)
