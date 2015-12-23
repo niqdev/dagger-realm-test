@@ -35,7 +35,7 @@ public class ApplicationContextModule {
 
     @Provides
     @Singleton
-    public PreferenceService providePreferenceService(Application application) {
+    public PreferenceService providePreferenceService() {
         return new PreferenceServiceImpl(application);
     }
 

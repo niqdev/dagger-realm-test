@@ -6,9 +6,15 @@ import android.content.SharedPreferences;
 
 import com.github.niqdev.service.PreferenceService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PreferenceServiceImpl implements PreferenceService {
 
+    private static final Logger log = LoggerFactory.getLogger(PreferenceService.class);
+
     private static final String PREFERENCE_MAIN = "com.github.niqdev.MAIN";
+    private static final String MY_PREFERENCE = "com.github.niqdev.MAIN.MY_PREFERENCE";
 
     private final SharedPreferences sharedPreferences;
 
@@ -18,12 +24,13 @@ public class PreferenceServiceImpl implements PreferenceService {
 
     @Override
     public String readMyPreference() {
-        // TODO
-        return null;
+        log.debug("readMyPreference");
+        return sharedPreferences.getString(MY_PREFERENCE, "");
     }
 
     @Override
-    public void saveMyPreference(String value) {
-        // TODO
+    public void writeMyPreference(String value) {
+        log.debug("writeMyPreference: {}", value);
+        sharedPreferences.edit().putString(MY_PREFERENCE, value).apply();
     }
 }

@@ -4,6 +4,6 @@ public interface PreferenceService {
 
     String readMyPreference();
 
-    void saveMyPreference(String value);
+    void writeMyPreference(String value);
 
 }

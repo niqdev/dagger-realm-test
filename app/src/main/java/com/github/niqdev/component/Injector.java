@@ -5,7 +5,7 @@ import com.github.niqdev.component.module.ApplicationContextModule;
 
 import java.util.Objects;
 
-public class Injector {
+public final class Injector {
 
     private static ApplicationComponent applicationComponent;
 

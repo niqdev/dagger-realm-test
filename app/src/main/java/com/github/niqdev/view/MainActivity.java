@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.editTextExample2)
     EditText editTextExample2;
 
-    //@Inject
+    @Inject
     PreferenceService preferenceService;
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Injector.getApplicationComponent().inject(this);
         ButterKnife.bind(this);
 
-        //initPreference();
+        initPreference();
     }
 
     @OnClick(R.id.buttonExample1)
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     void onClickEditPreference() {
         String value = editTextExample2.getText().toString();
         if (!TextUtils.isEmpty(value)) {
-            preferenceService.saveMyPreference(value);
+            preferenceService.writeMyPreference(value);
         }
     }
 
