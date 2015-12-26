@@ -26,6 +26,9 @@ import org.robolectric.annotation.Config;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -47,6 +50,18 @@ public class MainActivityTest {
     @Rule
     public PowerMockRule rule = new PowerMockRule();
 
+    @Bind(R.id.textViewExample1)
+    TextView textViewExample1;
+
+    @Bind(R.id.editTextExample2)
+    EditText editTextExample2;
+
+    @Bind(R.id.buttonExample1)
+    Button buttonExample1;
+
+    @Bind(R.id.buttonExample2)
+    Button buttonExample2;
+
     @Before
     public void setup() {
         ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
@@ -59,12 +74,13 @@ public class MainActivityTest {
         ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
     }
 
+    private void setupActivity() {
+        ButterKnife.bind(this, Robolectric.setupActivity(MainActivity.class));
+    }
+
     @Test
     public void onClick_shouldChangeText() {
-        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
-
-        Button buttonExample1 = (Button) activity.findViewById(R.id.buttonExample1);
-        TextView textViewExample1 = (TextView) activity.findViewById(R.id.textViewExample1);
+        setupActivity();
 
         assertThat(textViewExample1.getText().toString(), equalTo("BEFORE"));
         buttonExample1.performClick();
@@ -76,12 +92,9 @@ public class MainActivityTest {
         String MY_PREFERENCE = "com.github.niqdev.MAIN.MY_PREFERENCE";
 
         when(preferenceServiceMock.readMyPreference()).thenReturn(MY_PREFERENCE);
+        setupActivity();
 
-        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
         verify(preferenceServiceMock, times(1)).readMyPreference();
-
-        EditText editTextExample2 = (EditText) activity.findViewById(R.id.editTextExample2);
-
         assertEquals("should init preference", MY_PREFERENCE, editTextExample2.getText().toString());
     }
 
@@ -90,11 +103,7 @@ public class MainActivityTest {
         String MY_PREFERENCE = "";
 
         doNothing().when(preferenceServiceMock).writeMyPreference(MY_PREFERENCE);
-
-        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
-
-        EditText editTextExample2 = (EditText) activity.findViewById(R.id.editTextExample2);
-        Button buttonExample2 = (Button) activity.findViewById(R.id.buttonExample2);
+        setupActivity();
 
         editTextExample2.setText(MY_PREFERENCE);
         buttonExample2.performClick();
@@ -106,11 +115,7 @@ public class MainActivityTest {
         String MY_PREFERENCE = "com.github.niqdev.MAIN.MY_PREFERENCE";
 
         doNothing().when(preferenceServiceMock).writeMyPreference(MY_PREFERENCE);
-
-        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
-
-        EditText editTextExample2 = (EditText) activity.findViewById(R.id.editTextExample2);
-        Button buttonExample2 = (Button) activity.findViewById(R.id.buttonExample2);
+        setupActivity();
 
         editTextExample2.setText(MY_PREFERENCE);
         buttonExample2.performClick();
