@@ -1,6 +1,5 @@
 package com.github.niqdev.component.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.github.niqdev.CustomApplication;

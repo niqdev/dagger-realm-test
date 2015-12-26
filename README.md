@@ -13,3 +13,7 @@ for Linux and Mac users:
 Links
 
 - [setup dagger](http://stackoverflow.com/questions/27036933/how-to-set-up-dagger-dependency-injection-from-scratch-in-android-project)
+
+issue:
+
+https://github.com/robolectric/robolectric/issues/1389
