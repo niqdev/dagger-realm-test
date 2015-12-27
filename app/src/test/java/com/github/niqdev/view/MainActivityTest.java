@@ -44,11 +44,11 @@ import static org.mockito.Mockito.when;
 @PrepareForTest({Injector.class})
 public class MainActivityTest {
 
-    @Inject
-    PreferenceService preferenceServiceMock;
-
     @Rule
     public PowerMockRule rule = new PowerMockRule();
+
+    @Inject
+    PreferenceService preferenceServiceMock;
 
     @Bind(R.id.textViewExample1)
     TextView textViewExample1;
@@ -88,7 +88,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void onClick_shouldInitPreference() {
+    public void shouldInitPreference() {
         String MY_PREFERENCE = "com.github.niqdev.MAIN.MY_PREFERENCE";
 
         when(preferenceServiceMock.readMyPreference()).thenReturn(MY_PREFERENCE);
