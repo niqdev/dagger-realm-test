@@ -4,7 +4,11 @@
     <string name="text_before">BEFORE</string>
     <string name="text_after">AFTER</string>
     <string name="text_preference">Preference</string>
+    <string name="text_message_content">Message content</string>
+    <string name="text_message_info">Message info</string>
+    <string name="validation_required">Required field</string>
 
     <string name="btn_example1">change</string>
     <string name="btn_example2">edit preference</string>
+    <string name="btn_example3">add</string>
 </resources>

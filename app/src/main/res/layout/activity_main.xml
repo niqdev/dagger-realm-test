@@ -43,4 +43,34 @@
             android:text="@string/btn_example2"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextExample3Content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_message_content"/>
+
+        <EditText
+            android:id="@+id/editTextExample3Info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_message_info"/>
+
+        <Button
+            android:id="@+id/buttonExample3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_example3"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewExample3"/>
+    </LinearLayout>
+
 </LinearLayout>
