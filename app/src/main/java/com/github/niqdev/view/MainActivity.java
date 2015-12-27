@@ -3,7 +3,10 @@ package com.github.niqdev.view;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.niqdev.R;
@@ -14,6 +17,10 @@ import com.github.niqdev.service.PreferenceService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -47,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.editTextExample3Info)
     EditText editTextExample3Info;
 
+    @Bind(R.id.listViewExample3)
+    ListView listViewExample3;
+
     @Inject
     PreferenceService preferenceService;
 
@@ -62,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initPreference();
-        initDatabase();
+        refreshMessages();
     }
 
     @OnClick(R.id.buttonExample1)
@@ -82,8 +92,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initDatabase() {
-
+    // use lambda and stream!
+    private void refreshMessages() {
+        messageRepository.findAll()
+            .subscribe(new Action1<List<MessageModel>>() {
+                @Override
+                public void call(List<MessageModel> messages) {
+                    List<String> values = new ArrayList<>();
+                    for (MessageModel message : messages) {
+                        values.add(message.getContent());
+                    }
+                    listViewExample3.setAdapter(
+                        new ArrayAdapter<>(MainActivity.this.getBaseContext(), android.R.layout.simple_list_item_1, values));
+                }
+            });
     }
 
     @OnClick(R.id.buttonExample3)
@@ -96,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
             editTextExample3Content.setError(validationRequired);
         } else {
             MessageModel message = MessageModel.newBuilder().content(content).info(info).build();
+            editTextExample3Content.setText("");
+            editTextExample3Info.setText("");
 
             messageRepository.add(message)
                 .subscribeOn(Schedulers.io())
@@ -104,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void call(String s) {
                         log.debug("onClickAddMessage UUID={}", s);
+                        ((BaseAdapter) listViewExample3.getAdapter()).notifyDataSetChanged();
+                        refreshMessages();
                     }
                 });
         }
