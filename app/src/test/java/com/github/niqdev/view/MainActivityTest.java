@@ -41,6 +41,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -90,7 +91,7 @@ public class MainActivityTest {
     public void setup() {
         ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
             .applicationContextModuleTest(new ApplicationContextModuleTest())
-            .repositoryModuleTest(new RepositoryModuleTest())
+            .repositoryModuleTest(new RepositoryModuleTest(true))
             .build();
 
         PowerMockito.mockStatic(Injector.class);
@@ -188,7 +189,7 @@ public class MainActivityTest {
         String MESSAGE_INFO = "INFO";
 
         skipInitRefreshMessages();
-        when(messageRepository.add(MESSAGE_CONTENT, MESSAGE_INFO)).thenReturn(Observable.just(MESSAGE_UUID));
+        when(messageRepository.add((MessageModel)notNull())).thenReturn(Observable.just(MESSAGE_UUID));
         setupActivity();
 
         editTextExample3Content.setText(MESSAGE_CONTENT);
@@ -199,7 +200,7 @@ public class MainActivityTest {
         assertEquals("should clear value", "", editTextExample3Content.getText().toString());
         assertEquals("should clear value", "", editTextExample3Info.getText().toString());
 
-        verify(messageRepository).add(MESSAGE_CONTENT, MESSAGE_INFO);
+        verify(messageRepository).add((MessageModel)notNull());
         verify(messageRepository).findAll();
     }
 

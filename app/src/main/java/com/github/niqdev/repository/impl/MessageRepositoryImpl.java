@@ -18,14 +18,11 @@ public class MessageRepositoryImpl implements MessageRepository {
     private static final Logger log = LoggerFactory.getLogger(MessageRepository.class);
 
     @Override
-    public Observable<String> add(final String content, final String info) {
+    public Observable<String> add(final MessageModel model) {
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    MessageModel model = MessageModel.newBuilder()
-                        .content(content).info(info).build();
-
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     realm.copyToRealm(model);

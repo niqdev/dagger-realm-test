@@ -116,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(content)) {
             editTextExample3Content.setError(validationRequired);
         } else {
+            MessageModel message = MessageModel.newBuilder().content(content).info(info).build();
             editTextExample3Content.setText("");
             editTextExample3Info.setText("");
 
-            messageRepository.add(content, info)
+            messageRepository.add(message)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
