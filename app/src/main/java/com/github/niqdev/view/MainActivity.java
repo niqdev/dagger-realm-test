@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -117,11 +116,10 @@ public class MainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(content)) {
             editTextExample3Content.setError(validationRequired);
         } else {
-            MessageModel message = MessageModel.newBuilder().content(content).info(info).build();
             editTextExample3Content.setText("");
             editTextExample3Info.setText("");
 
-            messageRepository.add(message)
+            messageRepository.add(content, info)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {

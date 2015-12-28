@@ -8,7 +8,7 @@ import rx.Observable;
 
 public interface MessageRepository {
 
-    Observable<String> add(MessageModel model);
+    Observable<String> add(String content, String info);
 
     Observable<List<MessageModel>> findAll();
 
