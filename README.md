@@ -1,6 +1,6 @@
-Sample Android application of unit testing with Dagger 2 and Realm with Robolectric, Mockito and PowerMockito.
+#Dagger 2 and Realm unit test
 
-> work in progress!
+Sample Android application of Dagger 2 and Realm tested with Robolectric, Mockito and PowerMockito.
 
 Setup [Robolectric](http://robolectric.org/getting-started/)
 
