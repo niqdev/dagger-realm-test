@@ -2,6 +2,8 @@
 
 Sample Android application of Dagger 2 and Realm tested with Robolectric, Mockito and PowerMockito.
 
+> work in progress!
+
 Setup [Robolectric](http://robolectric.org/getting-started/)
 
 - select test directory
