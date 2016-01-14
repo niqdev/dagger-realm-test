@@ -3,20 +3,22 @@ package com.github.niqdev;
 import android.app.Application;
 
 import com.github.niqdev.component.Injector;
+import com.github.niqdev.repository.DatabaseHelper;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
+import javax.inject.Inject;
 
 public class CustomApplication extends Application {
+
+    @Inject
+    DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfiguration);
-
         Injector.initializeApplicationComponent(this);
+        Injector.getApplicationComponent().inject(this);
+        databaseHelper.setup();
     }
 
 }
