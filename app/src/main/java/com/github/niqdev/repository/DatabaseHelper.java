@@ -3,11 +3,15 @@ package com.github.niqdev.repository;
 import android.content.Context;
 
 import com.github.niqdev.component.Injector;
+import com.github.niqdev.model.MessageModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmObject;
 
 public class DatabaseHelper {
 
@@ -31,5 +35,17 @@ public class DatabaseHelper {
 
     public Realm getRealmInstance() {
         return Realm.getDefaultInstance();
+    }
+
+    public <T extends RealmObject> T add(T model) {
+        Realm realm = getRealmInstance();
+        realm.beginTransaction();
+        realm.copyToRealm(model);
+        realm.commitTransaction();
+        return model;
+    }
+
+    public <T extends RealmObject> List<MessageModel> findAll(Class<T> clazz) {
+        return getRealmInstance().where(MessageModel.class).findAll();
     }
 }

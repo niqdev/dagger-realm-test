@@ -12,8 +12,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -34,10 +32,7 @@ public class MessageRepositoryImpl implements MessageRepository {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    Realm realm = databaseHelper.getRealmInstance();
-                    realm.beginTransaction();
-                    realm.copyToRealm(model);
-                    realm.commitTransaction();
+                    databaseHelper.add(model);
 
                     subscriber.onNext(model.getUuid());
                     subscriber.onCompleted();
@@ -55,9 +50,8 @@ public class MessageRepositoryImpl implements MessageRepository {
             @Override
             public void call(Subscriber<? super List<MessageModel>> subscriber) {
                 try {
-                    Realm realm = databaseHelper.getRealmInstance();
+                    List<MessageModel> models = databaseHelper.findAll(MessageModel.class);
 
-                    RealmResults<MessageModel> models = realm.where(MessageModel.class).findAll();
                     subscriber.onNext(models);
                     subscriber.onCompleted();
                 } catch (Exception e) {
