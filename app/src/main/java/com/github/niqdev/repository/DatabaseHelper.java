@@ -3,7 +3,6 @@ package com.github.niqdev.repository;
 import android.content.Context;
 
 import com.github.niqdev.component.Injector;
-import com.github.niqdev.model.MessageModel;
 
 import java.util.List;
 
