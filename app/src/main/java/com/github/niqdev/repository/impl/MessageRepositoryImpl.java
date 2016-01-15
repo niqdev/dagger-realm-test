@@ -61,7 +61,7 @@ public class MessageRepositoryImpl implements MessageRepository {
                     subscriber.onNext(models);
                     subscriber.onCompleted();
                 } catch (Exception e) {
-                    log.error("FIND_ALL", e);
+                    //log.error("FIND_ALL", e);
                     subscriber.onError(e);
                 }
             }
