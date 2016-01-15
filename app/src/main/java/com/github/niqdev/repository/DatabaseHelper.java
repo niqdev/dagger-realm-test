@@ -45,7 +45,7 @@ public class DatabaseHelper {
         return model;
     }
 
-    public <T extends RealmObject> List<MessageModel> findAll(Class<T> clazz) {
-        return getRealmInstance().where(MessageModel.class).findAll();
+    public <T extends RealmObject> List<T> findAll(Class<T> clazz) {
+        return getRealmInstance().where(clazz).findAll();
     }
 }
