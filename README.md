@@ -67,8 +67,6 @@ public class MessageRepositoryTest {
         TestSubscriber<List<MessageModel>> tester = new TestSubscriber<>();
         messageRepository.findAll().subscribe(tester);
 
-        assertEquals("invalid size", 2, messages.size());
-
         tester.assertValue(messages);
         tester.assertCompleted();
         tester.assertNoErrors();

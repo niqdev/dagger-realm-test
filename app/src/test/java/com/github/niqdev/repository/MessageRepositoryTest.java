@@ -26,7 +26,6 @@ import javax.inject.Inject;
 
 import rx.observers.TestSubscriber;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -90,8 +89,6 @@ public class MessageRepositoryTest {
 
         TestSubscriber<List<MessageModel>> tester = new TestSubscriber<>();
         messageRepository.findAll().subscribe(tester);
-
-        assertEquals("invalid size", 2, messages.size());
 
         tester.assertValue(messages);
         tester.assertCompleted();
