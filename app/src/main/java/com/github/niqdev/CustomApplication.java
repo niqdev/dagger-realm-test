@@ -3,14 +3,14 @@ package com.github.niqdev;
 import android.app.Application;
 
 import com.github.niqdev.component.Injector;
-import com.github.niqdev.repository.DatabaseHelper;
+import com.github.niqdev.repository.DatabaseRealm;
 
 import javax.inject.Inject;
 
 public class CustomApplication extends Application {
 
     @Inject
-    DatabaseHelper databaseHelper;
+    DatabaseRealm databaseRealm;
 
     @Override
     public void onCreate() {
@@ -18,7 +18,7 @@ public class CustomApplication extends Application {
 
         Injector.initializeApplicationComponent(this);
         Injector.getApplicationComponent().inject(this);
-        databaseHelper.setup();
+        databaseRealm.setup();
     }
 
 }

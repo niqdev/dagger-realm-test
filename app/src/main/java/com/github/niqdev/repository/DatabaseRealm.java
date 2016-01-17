@@ -12,14 +12,14 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 
-public class DatabaseHelper {
+public class DatabaseRealm {
 
     @Inject
     Context mContext;
 
     RealmConfiguration realmConfiguration;
 
-    public DatabaseHelper() {
+    public DatabaseRealm() {
         Injector.getApplicationComponent().inject(this);
     }
 

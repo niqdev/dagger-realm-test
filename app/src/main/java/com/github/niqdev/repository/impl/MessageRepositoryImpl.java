@@ -2,7 +2,7 @@ package com.github.niqdev.repository.impl;
 
 import com.github.niqdev.component.Injector;
 import com.github.niqdev.model.MessageModel;
-import com.github.niqdev.repository.DatabaseHelper;
+import com.github.niqdev.repository.DatabaseRealm;
 import com.github.niqdev.repository.MessageRepository;
 
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class MessageRepositoryImpl implements MessageRepository {
     private static final Logger log = LoggerFactory.getLogger(MessageRepository.class);
 
     @Inject
-    DatabaseHelper databaseHelper;
+    DatabaseRealm databaseRealm;
 
     public MessageRepositoryImpl() {
         Injector.getApplicationComponent().inject(this);
@@ -32,7 +32,7 @@ public class MessageRepositoryImpl implements MessageRepository {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
-                    databaseHelper.add(model);
+                    databaseRealm.add(model);
 
                     subscriber.onNext(model.getUuid());
                     subscriber.onCompleted();
@@ -50,7 +50,7 @@ public class MessageRepositoryImpl implements MessageRepository {
             @Override
             public void call(Subscriber<? super List<MessageModel>> subscriber) {
                 try {
-                    List<MessageModel> models = databaseHelper.findAll(MessageModel.class);
+                    List<MessageModel> models = databaseRealm.findAll(MessageModel.class);
 
                     subscriber.onNext(models);
                     subscriber.onCompleted();

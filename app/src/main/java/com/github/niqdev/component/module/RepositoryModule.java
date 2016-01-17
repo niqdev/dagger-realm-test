@@ -1,6 +1,6 @@
 package com.github.niqdev.component.module;
 
-import com.github.niqdev.repository.DatabaseHelper;
+import com.github.niqdev.repository.DatabaseRealm;
 import com.github.niqdev.repository.MessageRepository;
 import com.github.niqdev.repository.impl.MessageRepositoryImpl;
 
@@ -20,7 +20,7 @@ public class RepositoryModule {
 
     @Provides
     @Singleton
-    public DatabaseHelper provideDatabaseHelper() {
-        return new DatabaseHelper();
+    public DatabaseRealm provideDatabaseRealm() {
+        return new DatabaseRealm();
     }
 }

@@ -1,6 +1,6 @@
 package com.github.niqdev.component.module;
 
-import com.github.niqdev.repository.DatabaseHelper;
+import com.github.niqdev.repository.DatabaseRealm;
 import com.github.niqdev.repository.MessageRepository;
 import com.github.niqdev.repository.impl.MessageRepositoryImpl;
 
@@ -28,8 +28,8 @@ public class RepositoryModuleTest {
 
     @Provides
     @Singleton
-    public DatabaseHelper provideDatabaseHelper() {
-        return mock(DatabaseHelper.class);
+    public DatabaseRealm provideDatabaseHelper() {
+        return mock(DatabaseRealm.class);
     }
 }
 
