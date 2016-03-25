@@ -2,8 +2,6 @@
 
 Sample Android application of Dagger 2 and Realm tested with Robolectric, Mockito and PowerMockito.
 
-> work in progress!
-
 Example
 ```java
 @RunWith(RobolectricGradleTestRunner.class)
