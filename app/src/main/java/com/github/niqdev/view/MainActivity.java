@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,8 +24,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
@@ -41,20 +42,29 @@ public class MainActivity extends AppCompatActivity {
     @BindString(R.string.validation_required)
     String validationRequired;
 
-    @Bind(R.id.textViewExample1)
+    @BindView(R.id.textViewExample1)
     TextView textViewExample1;
 
-    @Bind(R.id.editTextExample2)
+    @BindView(R.id.editTextExample2)
     EditText editTextExample2;
 
-    @Bind(R.id.editTextExample3Content)
+    @BindView(R.id.editTextExample3Content)
     EditText editTextExample3Content;
 
-    @Bind(R.id.editTextExample3Info)
+    @BindView(R.id.editTextExample3Info)
     EditText editTextExample3Info;
 
-    @Bind(R.id.listViewExample3)
+    @BindView(R.id.listViewExample3)
     ListView listViewExample3;
+
+    @BindView(R.id.buttonExample1)
+    Button buttonExample1;
+
+    @BindView(R.id.buttonExample2)
+    Button buttonExample2;
+
+    @BindView(R.id.buttonExample3)
+    Button buttonExample3;
 
     @Inject
     PreferenceService preferenceService;

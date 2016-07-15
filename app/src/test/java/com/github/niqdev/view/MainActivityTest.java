@@ -1,9 +1,6 @@
 package com.github.niqdev.view;
 
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.github.niqdev.BuildConfig;
 import com.github.niqdev.R;
@@ -33,7 +30,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 
@@ -63,29 +60,10 @@ public class MainActivityTest {
     @Inject
     MessageRepository messageRepository;
 
-    @Bind(R.id.textViewExample1)
-    TextView textViewExample1;
-
-    @Bind(R.id.editTextExample2)
-    EditText editTextExample2;
-
-    @Bind(R.id.editTextExample3Content)
-    EditText editTextExample3Content;
-
-    @Bind(R.id.editTextExample3Info)
-    EditText editTextExample3Info;
-
-    @Bind(R.id.buttonExample1)
-    Button buttonExample1;
-
-    @Bind(R.id.buttonExample2)
-    Button buttonExample2;
-
-    @Bind(R.id.buttonExample3)
-    Button buttonExample3;
-
-    @Bind(R.id.listViewExample3)
+    @BindView(R.id.listViewExample3)
     ListView listViewExample3;
+
+    MainActivity activity;
 
     @Before
     public void setup() {
@@ -101,7 +79,9 @@ public class MainActivityTest {
     }
 
     private void setupActivity() {
-        ButterKnife.bind(this, Robolectric.setupActivity(MainActivity.class));
+        ButterKnife.setDebug(true);
+        activity = Robolectric.setupActivity(MainActivity.class);
+        ButterKnife.bind(this, activity);
     }
 
     private void skipInitRefreshMessages() {
@@ -113,9 +93,9 @@ public class MainActivityTest {
         skipInitRefreshMessages();
         setupActivity();
 
-        assertThat(textViewExample1.getText().toString(), equalTo("BEFORE"));
-        buttonExample1.performClick();
-        assertThat(textViewExample1.getText().toString(), equalTo("AFTER"));
+        assertThat(activity.textViewExample1.getText().toString(), equalTo("BEFORE"));
+        activity.buttonExample1.performClick();
+        assertThat(activity.textViewExample1.getText().toString(), equalTo("AFTER"));
     }
 
     @Test
@@ -127,7 +107,7 @@ public class MainActivityTest {
         setupActivity();
 
         verify(preferenceServiceMock, times(1)).readMyPreference();
-        assertEquals("should init preference", MY_PREFERENCE, editTextExample2.getText().toString());
+        assertEquals("should init preference", MY_PREFERENCE, activity.editTextExample2.getText().toString());
     }
 
     @Test
@@ -138,8 +118,8 @@ public class MainActivityTest {
         skipInitRefreshMessages();
         setupActivity();
 
-        editTextExample2.setText(MY_PREFERENCE);
-        buttonExample2.performClick();
+        activity.editTextExample2.setText(MY_PREFERENCE);
+        activity.buttonExample2.performClick();
         verify(preferenceServiceMock, never()).writeMyPreference(MY_PREFERENCE);
     }
 
@@ -151,8 +131,8 @@ public class MainActivityTest {
         skipInitRefreshMessages();
         setupActivity();
 
-        editTextExample2.setText(MY_PREFERENCE);
-        buttonExample2.performClick();
+        activity.editTextExample2.setText(MY_PREFERENCE);
+        activity.buttonExample2.performClick();
         verify(preferenceServiceMock).writeMyPreference(MY_PREFERENCE);
     }
 
@@ -166,9 +146,9 @@ public class MainActivityTest {
         setupActivity();
         verify(messageRepository).findAll();
 
-        assertEquals("should init adapter", 2, listViewExample3.getAdapter().getCount());
-        assertEquals("should init adapter with message", "CONTENT1", listViewExample3.getAdapter().getItem(0));
-        assertEquals("should init adapter with message", "CONTENT2", listViewExample3.getAdapter().getItem(1));
+        assertEquals("should init adapter", 2, activity.listViewExample3.getAdapter().getCount());
+        assertEquals("should init adapter with message", "CONTENT1", activity.listViewExample3.getAdapter().getItem(0));
+        assertEquals("should init adapter with message", "CONTENT2", activity.listViewExample3.getAdapter().getItem(1));
     }
 
     @Test
@@ -176,10 +156,10 @@ public class MainActivityTest {
         skipInitRefreshMessages();
         setupActivity();
 
-        assertNull("no content error", editTextExample3Content.getError());
-        editTextExample3Content.setText("");
-        buttonExample3.performClick();
-        assertEquals("should display error", "Required field", editTextExample3Content.getError());
+        assertNull("no content error", activity.editTextExample3Content.getError());
+        activity.editTextExample3Content.setText("");
+        activity.buttonExample3.performClick();
+        assertEquals("should display error", "Required field", activity.editTextExample3Content.getError());
     }
 
     @Test
@@ -192,13 +172,13 @@ public class MainActivityTest {
         when(messageRepository.add((MessageModel)notNull())).thenReturn(Observable.just(MESSAGE_UUID));
         setupActivity();
 
-        editTextExample3Content.setText(MESSAGE_CONTENT);
-        editTextExample3Info.setText(MESSAGE_INFO);
+        activity.editTextExample3Content.setText(MESSAGE_CONTENT);
+        activity.editTextExample3Info.setText(MESSAGE_INFO);
 
-        buttonExample3.performClick();
-        assertNull("no content error", editTextExample3Content.getError());
-        assertEquals("should clear value", "", editTextExample3Content.getText().toString());
-        assertEquals("should clear value", "", editTextExample3Info.getText().toString());
+        activity.buttonExample3.performClick();
+        assertNull("no content error", activity.editTextExample3Content.getError());
+        assertEquals("should clear value", "", activity.editTextExample3Content.getText().toString());
+        assertEquals("should clear value", "", activity.editTextExample3Info.getText().toString());
 
         verify(messageRepository).add((MessageModel)notNull());
         verify(messageRepository).findAll();
