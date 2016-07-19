@@ -1,7 +1,9 @@
 #Dagger 2 and Realm unit test
 
 [![Build Status](https://travis-ci.org/niqdev/dagger-realm-test.svg?branch=master)](https://travis-ci.org/niqdev/dagger-realm-test)
+<!-- TODO verify coverall
 [![Coverage Status](https://coveralls.io/repos/github/niqdev/dagger-realm-test/badge.svg?branch=master)](https://coveralls.io/github/niqdev/dagger-realm-test?branch=master)
+-->
 
 :tada: Updated with Realm v1.x!! [Robolectric/Realm issue](https://github.com/robolectric/robolectric/issues/1389)
 
