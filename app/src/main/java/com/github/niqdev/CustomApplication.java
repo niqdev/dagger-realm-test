@@ -15,16 +15,13 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initApplication();
+    }
 
+    protected void initApplication() {
         Injector.initializeApplicationComponent(this);
         Injector.getApplicationComponent().inject(this);
-        // TODO
-        // http://blog.sqisland.com/2015/12/mock-application-in-espresso.html
-        //https://github.com/realm/realm-java/blob/master/examples/unitTestExample/src/test/java/io/realm/examples/unittesting/ExampleRealmTest.java
-        //https://github.com/realm/realm-java/blob/master/examples/unitTestExample/src/test/java/io/realm/examples/unittesting/ExampleActivityTest.java
-        //https://github.com/robolectric/robolectric/issues/1389
-        //https://github.com/realm/realm-java/issues/904
-        //databaseRealm.setup();
+        databaseRealm.setup();
     }
 
 }

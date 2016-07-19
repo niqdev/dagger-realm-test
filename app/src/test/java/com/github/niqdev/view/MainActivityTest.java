@@ -1,6 +1,7 @@
 package com.github.niqdev.view;
 
 import com.github.niqdev.BuildConfig;
+import com.github.niqdev.CustomApplicationTest;
 import com.github.niqdev.component.ApplicationComponentTest;
 import com.github.niqdev.component.DaggerApplicationComponentTest;
 import com.github.niqdev.component.Injector;
@@ -42,7 +43,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(application = CustomApplicationTest.class, constants = BuildConfig.class, sdk = 21)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
 @PrepareForTest({Injector.class})
 public class MainActivityTest {
