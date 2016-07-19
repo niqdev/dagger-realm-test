@@ -5,11 +5,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/niqdev/dagger-realm-test/badge.svg?branch=master)](https://coveralls.io/github/niqdev/dagger-realm-test?branch=master)
 -->
 
-:tada: Updated with Realm v1.x!! [Robolectric/Realm issue](https://github.com/robolectric/robolectric/issues/1389)
+:tada: Updated with Realm v1.x!! Robolectric/Realm [issue](https://github.com/robolectric/robolectric/issues/1389)
 
 Sample Android application of [Dagger 2](http://google.github.io/dagger/) and [Realm](https://realm.io/docs/java/latest/) tested with [Robolectric](http://robolectric.org/), [Mockito](http://mockito.org/) and [PowerMockito](https://github.com/jayway/powermock).
 
-Example
+### Example
 ```java
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(application = CustomApplicationTest.class, constants = BuildConfig.class, sdk = 21)
