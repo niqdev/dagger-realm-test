@@ -1,0 +1,17 @@
+// ./gradlew jacocoTestReportDebug
+
+apply plugin: 'com.vanniktech.android.junit.jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+junitJacoco {
+    jacocoVersion = '0.7.7.201606060606'
+}
+
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/debug/jacoco.xml"
+}
+
+tasks.coveralls {
+    dependsOn 'connectedAndroidTest'
+    onlyIf { System.env.'CI' }
+}

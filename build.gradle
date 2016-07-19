@@ -6,6 +6,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.1.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'io.realm:realm-gradle-plugin:1.1.0'
+        classpath 'com.vanniktech:gradle-android-junit-jacoco-plugin:0.5.0'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
     }
 }
 

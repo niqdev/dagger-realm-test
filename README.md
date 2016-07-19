@@ -1,10 +1,11 @@
 #Dagger 2 and Realm unit test
 
 [![Build Status](https://travis-ci.org/niqdev/dagger-realm-test.svg?branch=master)](https://travis-ci.org/niqdev/dagger-realm-test)
+[![Coverage Status](https://coveralls.io/repos/github/niqdev/dagger-realm-test/badge.svg?branch=master)](https://coveralls.io/github/niqdev/dagger-realm-test?branch=master)
 
-:tada: Updated with Realm v1.x!!
+:tada: Updated with Realm v1.x!! [Robolectric/Realm issue](https://github.com/robolectric/robolectric/issues/1389)
 
-Sample Android application of Dagger 2 and Realm tested with Robolectric, Mockito and PowerMockito.
+Sample Android application of [Dagger 2](http://google.github.io/dagger/) and [Realm](https://realm.io/docs/java/latest/) tested with [Robolectric](http://robolectric.org/), [Mockito](http://mockito.org/) and [PowerMockito](https://github.com/jayway/powermock).
 
 Example
 ```java

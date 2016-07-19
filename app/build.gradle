@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'realm-android'
+apply from: '../coverage.gradle'
 
 android {
     compileSdkVersion 24
