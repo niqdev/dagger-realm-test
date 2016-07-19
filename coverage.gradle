@@ -4,6 +4,7 @@ apply plugin: 'com.vanniktech.android.junit.jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 
 junitJacoco {
+    // with the latest version coverage is always zero
     //jacocoVersion = '0.7.7.201606060606'
 }
 
