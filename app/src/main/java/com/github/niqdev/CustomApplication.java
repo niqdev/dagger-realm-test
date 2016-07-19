@@ -15,7 +15,10 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initApplication();
+    }
 
+    protected void initApplication() {
         Injector.initializeApplicationComponent(this);
         Injector.getApplicationComponent().inject(this);
         databaseRealm.setup();

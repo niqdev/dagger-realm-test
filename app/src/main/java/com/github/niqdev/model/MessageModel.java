@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
 
 public class MessageModel extends RealmObject {
 
+    @Required
     @PrimaryKey
     private String uuid;
 

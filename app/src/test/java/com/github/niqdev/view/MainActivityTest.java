@@ -1,9 +1,7 @@
 package com.github.niqdev.view;
 
-import android.widget.ListView;
-
 import com.github.niqdev.BuildConfig;
-import com.github.niqdev.R;
+import com.github.niqdev.CustomApplicationTest;
 import com.github.niqdev.component.ApplicationComponentTest;
 import com.github.niqdev.component.DaggerApplicationComponentTest;
 import com.github.niqdev.component.Injector;
@@ -30,7 +28,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 
@@ -46,7 +43,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(application = CustomApplicationTest.class, constants = BuildConfig.class, sdk = 21)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
 @PrepareForTest({Injector.class})
 public class MainActivityTest {
@@ -59,9 +56,6 @@ public class MainActivityTest {
 
     @Inject
     MessageRepository messageRepository;
-
-    @BindView(R.id.listViewExample3)
-    ListView listViewExample3;
 
     MainActivity activity;
 
