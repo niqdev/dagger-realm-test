@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 24
@@ -38,8 +39,6 @@ dependencies {
     testProvided 'com.google.dagger:dagger-compiler:2.5'
 
     compile 'com.android.support:appcompat-v7:24.0.0'
-
-    compile 'io.realm:realm-android:0.87.1'
 
     compile 'io.reactivex:rxjava:1.1.7'
     compile 'io.reactivex:rxandroid:1.2.1'

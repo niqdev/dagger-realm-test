@@ -1,9 +1,6 @@
 package com.github.niqdev.view;
 
-import android.widget.ListView;
-
 import com.github.niqdev.BuildConfig;
-import com.github.niqdev.R;
 import com.github.niqdev.component.ApplicationComponentTest;
 import com.github.niqdev.component.DaggerApplicationComponentTest;
 import com.github.niqdev.component.Injector;
@@ -30,7 +27,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 
@@ -59,9 +55,6 @@ public class MainActivityTest {
 
     @Inject
     MessageRepository messageRepository;
-
-    @BindView(R.id.listViewExample3)
-    ListView listViewExample3;
 
     MainActivity activity;
 
