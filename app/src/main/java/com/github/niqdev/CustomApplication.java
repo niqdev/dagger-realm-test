@@ -15,12 +15,16 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initApplication();
+        initDagger();
+        initRealm();
     }
 
-    protected void initApplication() {
+    protected void initDagger() {
         Injector.initializeApplicationComponent(this);
         Injector.getApplicationComponent().inject(this);
+    }
+
+    protected void initRealm() {
         databaseRealm.setup();
     }
 

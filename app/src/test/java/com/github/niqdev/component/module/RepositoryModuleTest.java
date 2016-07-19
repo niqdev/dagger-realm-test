@@ -14,22 +14,25 @@ import static org.mockito.Mockito.mock;
 @Module
 public class RepositoryModuleTest {
 
-    private boolean isMocked;
+    private boolean isMockedRepository;
+    private boolean isMockedDatabase;
 
-    public RepositoryModuleTest(boolean isMocked) {
-        this.isMocked = isMocked;
+    // for simplicity use variables, but you should create separated modules if needed
+    public RepositoryModuleTest(boolean mockRepository, boolean mockDatabase) {
+        this.isMockedRepository = mockRepository;
+        this.isMockedDatabase = mockDatabase;
     }
 
     @Provides
     @Singleton
     public MessageRepository provideMessageRepository() {
-        return isMocked ? mock(MessageRepository.class) : new MessageRepositoryImpl();
+        return isMockedRepository ? mock(MessageRepository.class) : new MessageRepositoryImpl();
     }
 
     @Provides
     @Singleton
     public DatabaseRealm provideDatabaseHelper() {
-        return mock(DatabaseRealm.class);
+        return isMockedDatabase ? mock(DatabaseRealm.class) : new DatabaseRealm();
     }
 }
 

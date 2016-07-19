@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.github.niqdev.R;
 import com.github.niqdev.component.Injector;
 import com.github.niqdev.model.MessageModel;
+import com.github.niqdev.repository.DatabaseRealm;
 import com.github.niqdev.repository.MessageRepository;
 import com.github.niqdev.service.PreferenceService;
 
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.buttonExample3)
     Button buttonExample3;
+
+    @Inject
+    DatabaseRealm databaseRealm;
 
     @Inject
     PreferenceService preferenceService;
@@ -144,4 +148,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseRealm.close();
+    }
 }

@@ -8,6 +8,7 @@ import com.github.niqdev.component.Injector;
 import com.github.niqdev.component.module.ApplicationContextModuleTest;
 import com.github.niqdev.component.module.RepositoryModuleTest;
 import com.github.niqdev.model.MessageModel;
+import com.github.niqdev.repository.DatabaseRealm;
 import com.github.niqdev.repository.MessageRepository;
 import com.github.niqdev.service.PreferenceService;
 
@@ -22,6 +23,7 @@ import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.util.ActivityController;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +46,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(application = CustomApplicationTest.class, constants = BuildConfig.class, sdk = 21)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
+@PowerMockIgnore({"org.robolectric.*", "android.*"})
 @PrepareForTest({Injector.class})
 public class MainActivityTest {
 
@@ -57,13 +59,16 @@ public class MainActivityTest {
     @Inject
     MessageRepository messageRepository;
 
+    @Inject
+    DatabaseRealm databaseRealm;
+
     MainActivity activity;
 
     @Before
     public void setup() {
         ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
             .applicationContextModuleTest(new ApplicationContextModuleTest())
-            .repositoryModuleTest(new RepositoryModuleTest(true))
+            .repositoryModuleTest(new RepositoryModuleTest(true, true))
             .build();
 
         PowerMockito.mockStatic(Injector.class);
@@ -176,6 +181,19 @@ public class MainActivityTest {
 
         verify(messageRepository).add((MessageModel)notNull());
         verify(messageRepository).findAll();
+    }
+
+    @Test
+    public void onCloseRealm() {
+        doNothing().when(databaseRealm).close();
+        skipInitRefreshMessages();
+
+        ActivityController<MainActivity> controller = Robolectric.buildActivity(MainActivity.class);
+        ButterKnife.bind(this, controller.get());
+
+        controller.pause().stop().destroy();
+
+        verify(databaseRealm).close();
     }
 
 }

@@ -49,7 +49,7 @@ public class MessageRepositoryTest {
     public void setupDagger() {
         ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
             .applicationContextModuleTest(new ApplicationContextModuleTest())
-            .repositoryModuleTest(new RepositoryModuleTest(false))
+            .repositoryModuleTest(new RepositoryModuleTest(false, true))
             .build();
 
         PowerMockito.mockStatic(Injector.class);

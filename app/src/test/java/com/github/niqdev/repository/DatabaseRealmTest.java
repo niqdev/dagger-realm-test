@@ -2,9 +2,11 @@ package com.github.niqdev.repository;
 
 import com.github.niqdev.BuildConfig;
 import com.github.niqdev.CustomApplicationTest;
-import com.github.niqdev.component.ApplicationComponent;
+import com.github.niqdev.component.ApplicationComponentTest;
+import com.github.niqdev.component.DaggerApplicationComponentTest;
 import com.github.niqdev.component.Injector;
 import com.github.niqdev.component.module.ApplicationContextModuleTest;
+import com.github.niqdev.component.module.RepositoryModuleTest;
 import com.github.niqdev.model.MessageModel;
 
 import org.junit.Before;
@@ -21,11 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import dagger.Component;
-import dagger.Module;
-import dagger.Provides;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
@@ -55,43 +53,17 @@ public class DatabaseRealmTest {
 
     Realm realmMock;
 
-    @Singleton
-    @Component(modules = {
-        ApplicationContextModuleTest.class,
-        DatabaseModuleTest.class
-    })
-    public interface DatabaseComponentTest extends ApplicationComponent {
-        void inject(DatabaseRealmTest database);
-    }
-
-
-    @Module
-    public class DatabaseModuleTest {
-
-        @Provides
-        @Singleton
-        public MessageRepository provideMessageRepository() {
-            return mock(MessageRepository.class);
-        }
-
-        @Provides
-        @Singleton
-        public DatabaseRealm provideDatabaseHelper() {
-            return new DatabaseRealm();
-        }
-    }
-
     @Before
     public void setupRealm() {
-        DatabaseComponentTest applicationComponentTest = DaggerDatabaseRealmTest_DatabaseComponentTest.builder()
+        ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
             .applicationContextModuleTest(new ApplicationContextModuleTest())
-            .databaseModuleTest(new DatabaseModuleTest())
+            .repositoryModuleTest(new RepositoryModuleTest(true, false))
             .build();
 
         mockStatic(Injector.class);
         when(Injector.getApplicationComponent()).thenReturn(applicationComponentTest);
 
-        ((DatabaseComponentTest) Injector.getApplicationComponent()).inject(this);
+        ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
 
         realmMock = mock(Realm.class);
         mockStatic(Realm.class);

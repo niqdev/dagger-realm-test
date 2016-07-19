@@ -47,4 +47,8 @@ public class DatabaseRealm {
     public <T extends RealmObject> List<T> findAll(Class<T> clazz) {
         return getRealmInstance().where(clazz).findAll();
     }
+
+    public void close() {
+        getRealmInstance().close();
+    }
 }
