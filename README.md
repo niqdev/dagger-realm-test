@@ -1,11 +1,15 @@
 #Dagger 2 and Realm unit test
 
+[![Build Status](https://travis-ci.org/niqdev/dagger-realm-test.svg?branch=master)](https://travis-ci.org/niqdev/dagger-realm-test)
+
+:tada: Updated with Realm v1.x!!
+
 Sample Android application of Dagger 2 and Realm tested with Robolectric, Mockito and PowerMockito.
 
 Example
 ```java
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(application = CustomApplicationTest.class, constants = BuildConfig.class, sdk = 21)
 @PowerMockIgnore({"org.mockito.*"})
 @PrepareForTest({Injector.class})
 public class MessageRepositoryTest {
@@ -94,5 +98,11 @@ Links/issues
 - https://stackoverflow.com/questions/29969913/creating-test-dependencies-when-using-dagger2
 - http://stackoverflow.com/questions/29989245/android-unit-tests-with-dagger-2
 - https://stackoverflow.com/questions/26939340/how-do-you-override-a-module-dependency-in-a-unit-test-with-dagger-2-0?lq=1
+- https://github.com/realm/realm-java/blob/master/examples/unitTestExample/src/test/java/io/realm/examples/unittesting/ExampleRealmTest.java
+- https://github.com/realm/realm-java/blob/master/examples/unitTestExample/src/test/java/io/realm/examples/unittesting/ExampleActivityTest.java
+- https://github.com/robolectric/robolectric/issues/1389
+- https://github.com/realm/realm-java/issues/904
+- http://blog.sqisland.com/2015/12/mock-application-in-espresso.html
+- https://artemzin.com/blog/how-to-mock-dependencies-in-unit-integration-and-functional-tests-dagger-robolectric-instrumentation/
 
 -->
