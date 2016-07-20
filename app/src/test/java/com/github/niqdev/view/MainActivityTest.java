@@ -1,5 +1,7 @@
 package com.github.niqdev.view;
 
+import android.app.Activity;
+
 import com.github.niqdev.BuildConfig;
 import com.github.niqdev.CustomApplicationTest;
 import com.github.niqdev.component.ApplicationComponentTest;
@@ -189,10 +191,18 @@ public class MainActivityTest {
         skipInitRefreshMessages();
 
         ActivityController<MainActivity> controller = Robolectric.buildActivity(MainActivity.class);
-        ButterKnife.bind(this, controller.get());
+        Activity myActivity = controller
+            .create()
+            .start()
+            .resume()
+            .visible()
+            .get();
+        ButterKnife.bind(this, myActivity);
 
-        controller.pause().stop().destroy();
-
+        controller
+            .pause()
+            .stop()
+            .destroy();
         verify(databaseRealm).close();
     }
 
